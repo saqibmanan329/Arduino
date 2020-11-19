@@ -1,0 +1,99 @@
+
+int rm1 = 10;
+int rm2 = 11;
+int lm1 = 5;
+int lm2 = 6;
+
+int sl = 2;
+int sm = 3;
+int sr = 4;
+
+
+void setup() {
+  pinMode(rm1,OUTPUT);    
+  pinMode(rm2,OUTPUT);
+  pinMode(lm1,OUTPUT);
+  pinMode(lm2,OUTPUT);
+  pinMode(sl,INPUT);
+  pinMode(sm,INPUT);
+  pinMode(sr,INPUT);
+}
+
+
+
+
+
+void loop() {
+
+
+
+    if(digitalRead(sl) == 0 && digitalRead(sm) == 1 && digitalRead(sr) == 0)            //010 = Forward
+  {    analogWrite(rm1,255);
+       analogWrite(rm2,0);
+       analogWrite(lm1,255);
+       analogWrite(lm2,0); 
+       
+   }
+
+
+
+
+
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+  if(digitalRead(sl) == 0 && digitalRead(sm) == 0 && digitalRead(sr) == 0)                   //000 = FIrst we check if there is a line ahead by moving an inch or two forward.
+  { 
+                 
+
+      
+
+      if(digitalRead(sl) == 0 && digitalRead(sm) == 1 && digitalRead(sr) == 0)              // 000 = Still all black, that means, we reached the end, We STOP here !
+      {analogWrite(rm1,0);
+       analogWrite(rm2,0);
+       analogWrite(lm1,0);
+       analogWrite(lm2,0);
+        
+      }
+    
+  }
+
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  
+
+
+
+
+  if(digitalRead(sl) == 0 && digitalRead(sm) == 0 && digitalRead(sr) == 1)            //001  = turn right
+  {    analogWrite(rm1,0);
+       analogWrite(rm2,0);
+       analogWrite(lm1,255);
+       analogWrite(lm2,0); 
+       
+   }
+
+
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+   
+  if(digitalRead(sl) == 1 && digitalRead(sm) == 0 && digitalRead(sr) == 0)            //100 = turn left
+  {    analogWrite(rm1,255);
+       analogWrite(rm2,0);
+       analogWrite(lm1,0);
+       analogWrite(lm2,0); 
+       
+   }
+
+
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+}
